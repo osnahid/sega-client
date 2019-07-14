@@ -1,0 +1,96 @@
+<section class="section-filter">
+  <div class="container">
+      <div class="row">
+          <div class="col-xs-12">
+              <div class="text-center">
+                  <h2 class="ui-title-block">Find Your Dream Car</h2>
+                  <div class="ui-subtitle-block">Tempor incididunt labore dolore magna aliqua sed ipsum</div>
+                  <div class="ui-decor"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-12">
+                  <div class="b-filter-type">
+                      <div class="b-filter-type__item">
+                          <input class="b-filter-type__input" id="typePickup" [(ngModel)]="type" (change)="onSelectType()" name="type-car" type="radio" value="pickUp" />
+                          <label class="b-filter-type__label" for="typePickup"><i class="b-filter-type__icon flaticon-pick-up"></i><span class="b-filter-type__title">PICKUP</span>
+                          </label>
+                      </div>
+                      <div class="b-filter-type__item">
+                          <input class="b-filter-type__input" id="typeSuv" name="type-car" (change)="onSelectType()" [(ngModel)]="type" type="radio" value="suv" />
+                          <label class="b-filter-type__label" for="typeSuv"><i class="b-filter-type__icon flaticon-car-of-hatchback-model"></i><span class="b-filter-type__title">SUV</span>
+                          </label>
+                      </div>
+                      <div class="b-filter-type__item">
+                          <input class="b-filter-type__input" id="typeCoupe" name="type-car" (change)="onSelectType()" [(ngModel)]="type" type="radio" value="coupe" checked="checked" />
+                          <label class="b-filter-type__label" for="typeCoupe"><i class="b-filter-type__icon flaticon-coupe-car"></i><span class="b-filter-type__title">coupe</span>
+                          </label>
+                      </div>
+                      <div class="b-filter-type__item">
+                          <input class="b-filter-type__input" id="typeConvertible" name="type-car" (change)="onSelectType()" [(ngModel)]="type" type="radio" value="convertible" />
+                          <label class="b-filter-type__label" for="typeConvertible"><i class="b-filter-type__icon flaticon-cabrio-car"></i><span class="b-filter-type__title">CONVERTIBLE</span>
+                          </label>
+                      </div>
+                      <div class="b-filter-type__item">
+                          <input class="b-filter-type__input" id="typeSedan" name="type-car" (change)="onSelectType()" [(ngModel)]="type" type="radio" value="sedan" />
+                          <label class="b-filter-type__label" for="typeSedan"><i class="b-filter-type__icon flaticon-sedan-car-model"></i><span class="b-filter-type__title">sedan</span>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="b-filter__inner bg-grey">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-4 col-sm-6 form-group">
+                        <label>Select a brand</label>
+                      <select class="form-control" (change)="onChangeBrands()" name="brand" [(ngModel)]="brand" data-width="100%">
+                          <option *ngIf="brands.length == 0" value="" selected>select a type first</option>
+                          <option *ngFor="let opBrand of brands" [value]="opBrand.name">{{ opBrand.name }}</option>
+                      </select>
+                      
+                  </div>
+                  <div class="col-md-4 col-sm-6 form-group">
+                        <label >Select a model</label>
+                        <select class="form-control" (change)="onChangeModels()" [(ngModel)]="model" data-width="100%">
+                                <option *ngIf="models.length == 0" value="" selected>select a brand first</option>
+                                <option *ngFor="let opModel of models" [value]="opModel">{{ opModel }}</option>
+                        </select>
+                  </div>
+                  <div class="col-md-4 col-sm-6 form-group">
+                        <label >Select a location</label>
+                        <select class="form-control" [(ngModel)]="location" (change)="onChangeLocation()"  data-width="100%">
+                                <option *ngIf="locations.length == 0" value="" selected>select a model first</option>
+                                <option *ngFor="let opLocation of locations" [value]="opLocation.ref">{{ opLocation.city }}-{{ opLocation.name }}</option>
+                        </select>
+                      
+                  </div>
+                  <div class="col-md-4 col-sm-6 form-group">
+                        <label>Select a year </label>
+                      <select [(ngModel)]="year" class="form-control" (change)="onChangeYear()" name="year" data-width="100%">
+                          <option *ngFor="let opYear of years" [value]="opYear">{{ opYear }}</option>
+                      </select>
+                  </div>
+                  <div class="col-md-4 col-sm-6">
+                      <br><br>
+                        <div class="ui-filter-slider">
+                            <div id="slider-price"></div>
+                            <div class="ui-filter-slider__info">
+                                <div class="ui-filter-slider__label">Price Range:</div><span class="ui-filter-slider__current" id="slider-snap-value-lower"></span>-<span class="ui-filter-slider__current" id="slider-snap-value-upper"></span>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="col-md-4 text-center col-sm-12">
+                      <div class="b-filter__btns">
+                          <button class="btn btn-lg btn-primary btn-block" (click)="onSearch()">search vehicle</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  <!-- end .b-filter-->
+</section>

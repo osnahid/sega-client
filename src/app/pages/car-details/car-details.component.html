@@ -1,0 +1,116 @@
+<div class="section-title-page area-bg area-bg_dark area-bg_op_70">
+        <div class="area-bg__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="b-title-page bg-primary_a">cars details</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end .b-title-page-->
+    <div class="bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a routerLink="/"><i class="icon fa fa-home"></i></a>
+                        </li>
+                        <li><a routerLink="/carDetails">Vehicle Inventry</a>
+                        </li>
+                        <li class="active">Car Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb-->
+<main class="l-main-content">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8">
+              <section class="b-car-details">
+                  <div class="b-car-details__header">
+                      <h2 class="b-car-details__title">{{ car.brand }} {{ car.model }} {{ car.year }}</h2>
+                      
+                  </div>
+                  <div class="slider-car-details slider-pro" id="slider-car-details">
+                        <img class="sp-image" [src]="car.img" alt="img" />
+                  </div>
+                  <!-- end .b-thumb-slider-->
+                  <div class="b-car-details__section">
+                      <h3 class="b-car-details__section-title ui-title-inner">Car Overview</h3>
+                  </div>
+                  <ul class="b-car-details__nav nav nav-tabs bg-primary">
+                      <li class="active"><a href="#specifications" data-toggle="tab">specifications</a>
+                      </li>
+                      <li><a href="#details" data-toggle="tab">technical details</a>
+                      </li>
+                  </ul>
+                  <div class="b-car-details__tabs tab-content">
+                      <div class="tab-pane active fade in" id="specifications">
+                          <div class="b-car-details__tabs-title">more features</div>
+                          <ul class="list list-mark-5 list_mark-prim list-2-col">
+                              <li *ngFor="let item of car.specifications">{{ item }}</li>
+                          </ul>
+                      </div>
+                      <div class="tab-pane fade" id="details">
+                        {{ car.specification }}
+                      </div>
+                  </div>
+              </section>
+          </div>
+          <div class="col-md-4">
+              <aside class="l-sidebar-2">
+                  <div class="b-car-info">
+                      <div class="b-car-info__price">info Details
+                      </div>
+                      <dl class="b-car-info__desc dl-horizontal bg-grey">
+                          <dt class="b-car-info__desc-dt">body</dt>
+                          <dd class="b-car-info__desc-dd">{{ car.type }}</dd>
+                          <dt class="b-car-info__desc-dt">year</dt>
+                          <dd class="b-car-info__desc-dd">{{ car.year }}</dd>
+                          <dt class="b-car-info__desc-dt">TRANSMISSION</dt>
+                          <dd class="b-car-info__desc-dd">{{ car.transmission }}</dd>
+                          <dt class="b-car-info__desc-dt">FUEL</dt>
+                          <dd class="b-car-info__desc-dd">{{ car.fuel }}</dd>
+                          <dt class="b-car-info__desc-dt">colors</dt>
+                          <dd class="b-car-info__desc-dd">{{ car.color }}</dd>
+                          <dt class="b-car-info__desc-dt">DRIVE TRAIN</dt>
+                          <dd class="b-car-info__desc-dd">{{ car.driveType }}</dd>
+                      </dl>
+                      <div class="b-car-info__item"><span class="b-car-info__item-name"><i class="icon flaticon-fuel"></i> Economy</span>
+                          <div class="b-car-info__item-inner">
+                              <span class="b-car-info__item-info">
+                              <span class="b-car-info__item-info_lg">{{ car.economy.city }}</span>
+                            <span class="b-car-info__item-info_sm"> CITY</span>
+                        </span><span class="b-car-info__item-info">
+                            <span class="b-car-info__item-info_lg">{{ car.economy.highway }}</span>
+                              <span class="b-car-info__item-info_sm">HWY</span>
+                                  </span>
+                          </div>
+                      </div>
+                      <div class="b-car-info__item"><span class="b-car-info__item-name"><i class="icon flaticon-car"></i> Vehicle Demand</span>
+                          <div class="b-car-info__item-inner"><span class="b-car-info__item-info">HIGH</span>
+                          </div>
+                      </div>
+                      <div class="b-bnr-2">
+                          <div class="b-bnr-2__icon flaticon-smartphone"></div>
+                          <div class="b-bnr-2__inner">
+                              <div class="b-bnr-2__title">Call Dealer</div>
+                              <div class="b-bnr-2__info">1-820-431-5815</div>
+                          </div>
+                      </div>
+                      <!-- end .b-banner-->
+                      <form class="b-calculator">
+                          <button style="width: 22em; background-color: #d01818;" (click)="onRentClick()" class="btn btn-dark">Rent Now</button>
+                      </form>
+                      <!-- end .b-calculator-->
+                  </div>
+              </aside>
+          </div>
+      </div>
+  </div>
+  <!-- end .section-default_top-->
+</main>

@@ -1,0 +1,181 @@
+<div class="section-title-page area-bg area-bg_dark area-bg_op_70">
+        <div class="area-bg__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="b-title-page bg-primary_a">cars listings I</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end .b-title-page-->
+    <div class="bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a routerLink="/"><i class="icon fa fa-home"></i></a>
+                        </li>
+                        <li class="active">Vehicle Inventry</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container">
+  <div class="row">
+      <div class="col-md-9">
+          <main class="l-main-content">
+              <div class="filter-goods">
+                  <div class="filter-goods__info">Showing results from<strong> 1 - 10</strong> of total<strong *ngIf="cars">{{cars.length}}</strong>
+                  </div>
+                  <div class="filter-goods__select">
+                      <div class="btns-switch"><i class="btns-switch__item js-view-th icon fa fa-th-large"></i><i class="btns-switch__item js-view-list active icon fa fa-th-list"></i>
+                      </div>
+                  </div>
+              </div>
+              <!-- end .filter-goods-->
+              <div class="goods-group-2 list-goods">
+                  <section *ngFor="let car of cars; let i=index" class="b-goods-1">
+                      <div class="row">
+                          <div class="b-goods-1__img">
+                              <a class="js-zoom-images" (click)="selectCar(car)">
+                                  <img class="img-responsive" [src]="car.img" alt="foto" />
+                              </a>
+                          </div>
+                          <div class="b-goods-1__inner">
+                              <div class="b-goods-1__header"><span class="b-goods-1__price hidden-th" (click)="selectCar(car)">{{getPrice(car.pricing)}}</span>
+                                  <h2 class="b-goods-1__name"><a (click)="selectCar(car)">{{ car.brand }} {{ car.model }} {{ car.year }}</a></h2>
+                              </div>
+                              <div class="b-goods-1__info">{{ car.specification }}
+                              </div><span class="b-goods-1__price_th text-primary visible-th" (click)="selectCar(car)">{{getPrice(car.pricing)}}</span>
+                              <div class="b-goods-1__section">
+                                  <h3 class="b-goods-1__title" data-toggle="collapse" [attr.data-target]="'#high'+i">Highlights</h3>
+                                  <div class="collapse in" [attr.id]="'high'+i">
+                                      <ul class="b-goods-1__desc list-unstyled">
+                                          <li class="b-goods-1__desc-item">{{ car.driveType }}</li>
+                                          <li class="b-goods-1__desc-item"><span class="hidden-th">Model:</span> {{ car.year }}</li>
+                                          <li class="b-goods-1__desc-item">{{ car.transmission }}</li>
+                                          <li class="b-goods-1__desc-item hidden-th">{{ car.fuel }}</li>
+                                      </ul>
+                                  </div>
+                              </div>
+                              <div class="b-goods-1__section hidden-th">
+                                  <h3 class="b-goods-1__title" data-toggle="collapse" [attr.data-target]="'#list'+i">specifications</h3>
+                                  <div class="collapse in" [attr.id]="'list'+i">
+                                      <ul class="b-goods-1__list list list-mark-5 list_mark-prim">
+                                          <li *ngFor="let item of car.specifications" class="b-goods-1__list-item">{{ item }}</li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
+                  <!-- end .b-goods-1-->
+              </div>
+              <!-- end .goods-group-2-->
+              <ul class="pagination text-center">
+                  <li><a href="#"><i class="icon fa fa-angle-double-left"></i></a>
+                  </li>
+                  <li><a href="#">1</a>
+                  </li>
+                  <li class="active"><a href="#">2</a>
+                  </li>
+                  <li><a href="#">3</a>
+                  </li>
+                  <li><a href="#"><i class="icon fa fa-angle-double-right"></i></a>
+                  </li>
+              </ul>
+          </main>
+          <!-- end .l-main-content-->
+      </div>
+      <div class="col-md-3">
+          <aside class="l-sidebar">
+                  <h3 class="b-filter-2__title">search options</h3>
+                  <div class="b-filter-2__inner">
+                      <div class="b-filter-2__group">
+                            <div class="b-filter-2__group-title">Vehicule type</div>
+                            <div class="b-filter-type-2">
+                                <div class="b-filter-type-2__item">
+                                    <input class="b-filter-type-2__input" id="typePickup" type="radio" (change)="onSelectType()" [(ngModel)]="filter.type"  value="pickup" name="model" />
+                                    <label class="b-filter-type-2__label" for="typePickup"><i class="b-filter-type-2__icon flaticon-pick-up"></i><span class="b-filter-type-2__title">PICKUP</span>
+                                    </label>
+                                </div>
+                                <div class="b-filter-type-2__item">
+                                    <input class="b-filter-type-2__input" id="typeSuv" type="radio" (change)="onSelectType()" [(ngModel)]="filter.type"  value="hatchback" name="model" />
+                                    <label class="b-filter-type-2__label" for="typeSuv"><i class="b-filter-type-2__icon flaticon-car-of-hatchback-model"></i><span class="b-filter-type-2__title">SUV</span>
+                                    </label>
+                                </div>
+                                <div class="b-filter-type-2__item">
+                                    <input class="b-filter-type-2__input" id="typeCoupe" type="radio" (change)="onSelectType()" [(ngModel)]="filter.type"  value="coupe" name="model" />
+                                    <label class="b-filter-type-2__label" for="typeCoupe"><i class="b-filter-type-2__icon flaticon-coupe-car"></i><span class="b-filter-type-2__title">coupe</span>
+                                    </label>
+                                </div>
+                                <div class="b-filter-type-2__item">
+                                    <input class="b-filter-type-2__input" id="typeConvertible" type="radio" (change)="onSelectType()" checked="checked"  value="cabriolet" [(ngModel)]="filter.type" name="model" />
+                                    <label class="b-filter-type-2__label" for="typeConvertible"><i class="b-filter-type-2__icon flaticon-cabrio-car"></i><span class="b-filter-type-2__title">CONVERTIBLE</span>
+                                    </label>
+                                </div>
+                                <div class="b-filter-type-2__item">
+                                    <input class="b-filter-type-2__input" id="typeSedan" type="radio" (change)="onSelectType()" [(ngModel)]="filter.type" value="sedan" name="model" />
+                                    <label class="b-filter-type-2__label" for="typeSedan"><i class="b-filter-type-2__icon flaticon-sedan-car-model"></i><span class="b-filter-type-2__title">sedan</span>
+                                    </label>
+                                </div>
+                                <div class="b-filter-type-2__item">
+                                    <input class="b-filter-type-2__input" id="typeMinicar" [(ngModel)]="filter.type" (change)="onSelectType()" value="minicar" name="model" type="radio" />
+                                    <label class="b-filter-type-2__label" for="typeMinicar"><i class="b-filter-type-2__icon flaticon-car-1"></i><span class="b-filter-type-2__title">MINICAR</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                      <div class="b-filter-2__group form-group">
+                          <div class="b-filter-2__group-title">Make</div>
+                          <select class="form-control" (change)="onSelectBrand()" [(ngModel)]="filter.brand"  data-width="100%">
+                              <option>All Makes</option>
+                              <option *ngFor="let opBrand of brands" [value]="opBrand.name">{{ opBrand.name }}</option>
+                          </select>
+                      </div>
+                      <div class="b-filter-2__group form-group">
+                          <div class="b-filter-2__group-title">Model</div>
+                          <select class="form-control" [(ngModel)]="filter.model" data-width="100%">
+                              <option >All Models</option>
+                              <option *ngFor="let opModel of models" [value]="opModel">{{ opModel }}</option>
+                          </select>
+                      </div>
+                      <div class="b-filter-2__group form-group">
+                          <div class="b-filter-2__group-title">Model Year</div>
+                          <select [(ngModel)]="filter.year" class="form-control" data-width="100%">
+                              <option value='' selected>Year</option>
+                              <option *ngFor="let item of years" value="item">{{ item }}</option>
+                          </select>
+                      </div>
+                      <div class="b-filter-2__group form-group">
+                          <div class="b-filter-2__group-title">fuel type</div>
+                          <select [(ngModel)]="filter.fuel" class="form-control" data-width="100%">
+                            <option value="" selected>All Fuel Types</option>
+                            <option value="gazoil">gazoil</option>
+                            <option value="diesel">diesel</option>
+                            <option value="electric">electric</option>
+                          </select>
+                      </div>
+                      
+                      <div class="b-filter-2__group">
+                          <div class="b-filter-2__group-title">TRANSMISSION</div>
+                          <div class="checkbox-group">
+                              <input class="forms__check hidden" id="check-1" name="transmission" [(ngModel)]="filter.transmission" value="automatic" type="radio" />
+                              <label class="forms__label forms__label-check forms__label-check-1" for="check-1">Automatic</label>
+                              <input class="forms__check hidden" id="check-2" name="transmission" [(ngModel)]="filter.transmission" value="manual" type="radio" />
+                              <label class="forms__label forms__label-check forms__label-check-1" for="check-2">Manual</label>
+                          </div>
+                      </div>
+                      <div class="b-filter-2__group">
+                            <button class="btn btn-lg btn-primary btn-block"  (click)="onSearch()">search vehicle</button>
+                      </div>
+                  </div>
+              <!-- end .b-filter-->
+          </aside>
+          <!-- end .l-sidebar-->
+      </div>
+  </div>
+</div>
